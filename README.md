@@ -193,7 +193,7 @@ This project uses a JSON file (`roles.json`) to store the train data. Here is an
     ]
   }
 }
-
+```
 
 ## Support
 
