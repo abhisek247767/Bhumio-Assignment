@@ -1,0 +1,57 @@
+{
+  "train-1": {
+    "id": "train-1",
+    "components": [
+      {
+        "start_role": [
+          "None"
+        ],
+        "present_role": "BA",
+        "next_role": [
+          "B"
+        ]
+      },
+      {
+        "start_role": [
+          "BA"
+        ],
+        "present_role": "B",
+        "next_role": [
+          "BA"
+        ]
+      },
+      {
+        "start_role": [
+          "BA"
+        ],
+        "present_role": "SA",
+        "next_role": [
+          "S"
+        ]
+      },
+      {
+        "start_role": [
+          "BA"
+        ],
+        "present_role": "SA",
+        "next_role": [
+          "S"
+        ]
+      }
+    ]
+  },
+  "7df893d9-315d-4be5-8e4f-c0f8904a0f1b": {
+    "id": "7df893d9-315d-4be5-8e4f-c0f8904a0f1b",
+    "components": [
+      {
+        "start_role": [
+          "None"
+        ],
+        "present_role": "PA",
+        "next_role": [
+          "PB"
+        ]
+      }
+    ]
+  }
+}
