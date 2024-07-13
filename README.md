@@ -24,49 +24,181 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This project is a Train Workflow Simulator built using NestJS. It allows you to create and manage trains with various components (nodes) and perform actions like starting and stopping components. Each train can have an engine, optional pantry cars with different configurations, and multiple coaches. The project is designed to simulate a train workflow based on a JSON file format.
 
-## Installation
+## Project Setup
 
-```bash
-$ npm install
-```
+### Prerequisites
 
-## Running the app
+- Node.js
+- npm (Node Package Manager)
 
-```bash
-# development
-$ npm run start
+### Installation
 
-# watch mode
-$ npm run start:dev
+1. Clone the repository:
 
-# production mode
-$ npm run start:prod
-```
+    ```sh
+    git clone https://github.com/abhisek247767/Bhumio-Assignment.git
+    cd train-workflow-simulator
+    ```
 
-## Test
+2. Install dependencies:
 
-```bash
-# unit tests
-$ npm run test
+    ```sh
+    npm install
+    ```
 
-# e2e tests
-$ npm run test:e2e
+3. Start the application:
 
-# test coverage
-$ npm run test:cov
-```
+    ```sh
+    npm run start
+    ```
+
+- `app.module.ts`: The root module of the application.
+- `main.ts`: The entry point of the application.
+- `train/`: Contains the Train module, controller, and service.
+- `roles.json`: Stores the train data and configurations.
+
+## Endpoints
+
+### Create a New Train
+
+- **URL**: `/train/create`
+- **Method**: `POST`
+- **Body**: None
+- **Response**:
+    ```json
+    {
+      "message": "New train created with ID {trainId}",
+      "trainId": "{trainId}"
+    }
+    ```
+
+### Add a Node to a Train
+
+- **URL**: `/train/add-node/:trainId`
+- **Method**: `POST`
+- **Body**:
+    ```json
+    {
+      "start_role": ["{role1}", "{role2}"],
+      "present_role": "{presentRole}",
+      "next_role": ["{nextRole1}", "{nextRole2}"]
+    }
+    ```
+- **Response**:
+    ```json
+    {
+      "message": "Component added to train {trainId}"
+    }
+    ```
+
+### Start a Component
+
+- **URL**: `/train/start/:trainId/:componentIndex`
+- **Method**: `POST`
+- **Body**: None
+- **Response**:
+    ```json
+    {
+      "message": "{presentRole} of train {trainId} started"
+    }
+    ```
+
+### Stop a Component
+
+- **URL**: `/train/stop/:trainId/:componentIndex`
+- **Method**: `POST`
+- **Body**: None
+- **Response**:
+    ```json
+    {
+      "message": "Stopped of train {trainId} stopped"
+    }
+    ```
+
+### Get a Train Model
+
+- **URL**: `/train/:trainId`
+- **Method**: `GET`
+- **Body**: None
+- **Response**:
+    ```json
+    {
+      "id": "{trainId}",
+      "components": [
+        {
+          "start_role": ["{role1}", "{role2}"],
+          "present_role": "{presentRole}",
+          "next_role": ["{nextRole1}", "{nextRole2}"]
+        }
+        // Other components
+      ]
+    }
+    ```
+
+### Get All Trains
+
+- **URL**: `/train`
+- **Method**: `GET`
+- **Body**: None
+- **Response**:
+    ```json
+    {
+      "{trainId1}": {
+        "id": "{trainId1}",
+        "components": [
+          {
+            "start_role": ["{role1}", "{role2}"],
+            "present_role": "{presentRole}",
+            "next_role": ["{nextRole1}", "{nextRole2}"]
+          }
+          // Other components
+        ]
+      },
+      "{trainId2}": {
+        "id": "{trainId2}",
+        "components": [
+          {
+            "start_role": ["{role1}", "{role2}"],
+            "present_role": "{presentRole}",
+            "next_role": ["{nextRole1}", "{nextRole2}"]
+          }
+          // Other components
+        ]
+      }
+      // Other trains
+    }
+    ```
+
+## Example JSON Structure
+
+This project uses a JSON file (`roles.json`) to store the train data. Here is an example structure:
+
+```json
+{
+  "train-1": {
+    "id": "train-1",
+    "components": [
+      {
+        "start_role": ["None"],
+        "present_role": "BA",
+        "next_role": ["B"]
+      },
+      {
+        "start_role": ["BA"],
+        "present_role": "B",
+        "next_role": ["BA"]
+      }
+    ]
+  }
+}
+
 
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
